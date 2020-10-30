@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC - Form</title>
+</head>
+<body>
+<form action ='#' th:action="@{/user/add/}" th:object="${userResource}" method="post" >
+    <label for="name">Name</label>
+    <input type="text" id="name" th:field="*{name}"/>
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p><br>
+    <br>
+
+    <label for="surname">Surname</label>
+    <input type="text" id="surname" th:field="*{surname}"/>
+    <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p><br>
+    <br>
+
+    <label for="personalNumber">Personal number</label>
+    <input type="text" id="personalNumber" th:field="*{personalNumber}"/>
+    <p th:if="${#fields.hasErrors('personalNumber')}" th:errors="*{personalNumber}"></p><br>
+    <br>
+
+    <label for="mail">Email</label>
+    <input type="text" id="mail" th:field="*{mail}"/>
+    <p th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></p><br>
+    <br>
+
+    <label for="postalNumber">Postal Number</label>
+    <input type="text" id="postalNumber" th:field="*{postalNumber}"/>
+    <p th:if="${#fields.hasErrors('postalNumber')}" th:errors="*{postalNumber}"></p><br>
+    <br>
+
+    <label for="city">City</label>
+    <input type="text" id="city" th:field="*{city}"/>
+    <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p><br>
+    <br>
+
+    <label for="street">Street</label>
+    <input type="text" id="street" th:field="*{street}"/>
+    <p th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p><br>
+    <br>
+
+    <label for="orientationalNumber">Orientational Number</label>
+    <input type="text" id="orientationalNumber" th:field="*{orientationalNumber}"/>
+    <p th:if="${#fields.hasErrors('orientationalNumber')}" th:errors="*{orientationalNumber}"></p><br>
+    <br>
+
+
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

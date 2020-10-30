@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC - Form</title>
+</head>
+<body>
+<form action ='#' th:action="@{'/contract/edit/travelInsuranceEdit/'+ ${id}}" th:object="${contract}"  method="post" >
+    <label for="issued">Issued</label>
+    <input type="date" id="issued" th:field="*{issued}"/>
+    <p th:if="${#fields.hasErrors('issued')}" th:errors="*{issued}"></p><br>
+    <br>
+
+    <label for="start">Start</label>
+    <input type="date" id="start" th:field="*{start}"/>
+    <p th:if="${#fields.hasErrors('start')}" th:errors="*{start}"></p><br>
+    <br>
+
+    <label for="end">End</label>
+    <input type="date" id="end" th:field="*{end}"/>
+    <p th:if="${#fields.hasErrors('end')}" th:errors="*{end}"></p><br>
+    <br>
+
+    <label for="amountInsured">Amount Insured</label>
+    <input type="number" id="amountInsured" th:field="*{amountInsured}"/>
+    <p th:if="${#fields.hasErrors('amountInsured')}" th:errors="*{amountInsured}"></p><br>
+    <br>
+
+    <label for="paymentPm">Payment per month</label>
+    <input type="number" id="paymentPm" th:field="*{paymentPm}"/>
+    <p th:if="${#fields.hasErrors('paymentPm')}" th:errors="*{paymentPm}"></p><br>
+    <br>
+
+    <label for="insurer">Insurer:</label>
+    <input type="text" id="insurer" name="insurer" th:value="*{insurer.getFullName()}" disabled><br>
+    <br>
+    <label for="insured">Insured:</label>
+    <input type="text" id="insured" name="insured" th:value="*{insured.getFullName()}" disabled><br>
+    <br>
+
+
+    <label for="eu">Valid in EU</label>
+    <input type="checkbox" id="eu" th:field="*{eu}"/>
+    <p th:if="${#fields.hasErrors('eu')}" th:errors="*{eu}"></p><br>
+    <br>
+
+    <label for="purpose">Validity</label>
+    <select name="purpose" id="purpose">
+        <option th:each="purpose: ${purposes}"
+                th:value="${purpose}"
+                th:selected="${purpose.equals(contract.getPurpose())}"
+                th:text="${purpose.getName()}"></option>
+    </select>
+    <p th:if="${#fields.hasErrors('purpose')}" th:errors="*{purpose}"></p><br>
+    <br>
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

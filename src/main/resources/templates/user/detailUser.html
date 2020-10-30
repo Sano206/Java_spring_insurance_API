@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC - list</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Id</th>
+        <th class="mdl-data-table__cell--non-numeric">Name</th>
+        <th class="mdl-data-table__cell--non-numeric">Personal Number</th>
+        <th class="mdl-data-table__cell--non-numeric">Email</th>
+        <th class="mdl-data-table__cell--non-numeric">Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.getFullName()}"></td>
+        <td th:text="${user.getPersonalNumber()}"></td>
+        <td th:text="${user.mail}"></td>
+        <td th:text="${user.residentalAddress.toString()}"></td>
+        <td><a th:href="@{'/user/update/'+ ${user.id}}" ><span>Edit</span></a></td>
+        <td><a th:href="@{'/user/detail/'+ ${user.id}}"><span>Detail</span></a></td>
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<h2>List of contracts</h2><br>
+<table>
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Issued</th>
+        <th class="mdl-data-table__cell--non-numeric">Start date</th>
+        <th class="mdl-data-table__cell--non-numeric">End date</th>
+        <th class="mdl-data-table__cell--non-numeric">Monthly payment</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contract: ${user.contracts.values()}">
+        <td th:text="${contract.getIssued()}"></td>
+        <td th:text="${contract.getStart()}"></td>
+        <td th:text="${contract.getEnd()}"></td>
+        <td th:text="${contract.getPaymentPm()}"></td>
+        <td><a th:href="@{'/contract/edit/'+ ${contract.id}}" ><span>Edit</span></a></td>
+        <td><a th:href="@{'/contract/detail/'+ ${contract.id}}"><span>Detail</span></a></td>
+
+    </tr>
+    </tbody>
+</table>
+
+<br>
+    <h2>Add new Contract</h2>
+<ul>
+    <li><a href="/contract/healthInsurance"><span>Health Insurance</span></a><br></li>
+    <li><a href="/contract/travelInsurance"><span>Travel Insurance</span></a><br></li>
+    <li><a href="/contract/householdInsurance"><span>Household Insurance</span></a><br></li>
+    <li><a href="/contract/houseAndApartmentInsurance"><span>House and Apartment Insurance</span></a><br></li>
+</ul>
+
+
+
+
+
+    <a href="/user/"><span>Back to list of users</span></a><br>
+
+
+</body>
+</html>

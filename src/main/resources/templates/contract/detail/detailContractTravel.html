@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC - list</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th >ID</th>
+        <th >Insurer name</th>
+        <th >Issued</th>
+        <th >Start date</th>
+        <th >End date</th>
+        <th >Monthly payment</th>
+        <th >Amount Insured</th>
+        <th>Insured name</th>
+        <th>EU validity</th>
+        <th>Purpose</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${contract.getId()}"></td>
+        <td th:text="${contract.getInsurer().getFullName()}"></td>
+        <td th:text="${contract.getIssued()}"></td>
+        <td th:text="${contract.getStart()}"></td>
+        <td th:text="${contract.getEnd()}"></td>
+        <td th:text="${contract.getPaymentPm()}"></td>
+        <td th:text="${contract.getAmountInsured()}"></td>
+        <td th:text="${contract.getInsured().getFullName()}"></td>
+        <td th:text="${contract.isEu()}"></td>
+        <td th:text="${contract.getPurpose()}"></td>
+
+        <td><a th:href="@{'/contract/edit/'+ ${contract.id}}" ><span>Edit</span></a></td>
+
+    </tr>
+    </tbody>
+</table>
+
+    <a href="/user/"><span>Back to list of users</span></a><br>
+
+
+</body>
+</html>

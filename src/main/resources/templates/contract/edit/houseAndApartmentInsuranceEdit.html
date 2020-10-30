@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC - Form</title>
+</head>
+<body>
+<form action ='#' th:action="@{'/contract/edit/houseAndApartmentInsuranceEdit/'+ ${id}}" th:object="${contract}"  method="post" >
+    <label for="issued">Issued</label>
+    <input type="date" id="issued" th:field="*{issued}"/>
+    <p th:if="${#fields.hasErrors('issued')}" th:errors="*{issued}"></p><br>
+    <br>
+
+    <label for="start">Start</label>
+    <input type="date" id="start" th:field="*{start}"/>
+    <p th:if="${#fields.hasErrors('start')}" th:errors="*{start}"></p><br>
+    <br>
+
+    <label for="end">End</label>
+    <input type="date" id="end" th:field="*{end}"/>
+    <p th:if="${#fields.hasErrors('end')}" th:errors="*{end}"></p><br>
+    <br>
+
+    <label for="amountInsured">Amount Insured</label>
+    <input type="number" id="amountInsured" th:field="*{amountInsured}"/>
+    <p th:if="${#fields.hasErrors('amountInsured')}" th:errors="*{amountInsured}"></p><br>
+    <br>
+
+    <label for="paymentPm">Payment per month</label>
+    <input type="number" id="paymentPm" th:field="*{paymentPm}"/>
+    <p th:if="${#fields.hasErrors('paymentPm')}" th:errors="*{paymentPm}"></p><br>
+    <br>
+
+    <label for="insurer">Insurer:</label>
+    <input type="text" id="insurer" name="insurer" th:value="*{insurer.getFullName()}" disabled><br>
+    <br>
+    <br>
+
+    <label for="postalNumber">Postal Number</label>
+    <input type="text" id="postalNumber" th:field="*{address.postalNumber}"/>
+    <p th:if="${#fields.hasErrors('address.postalNumber')}" th:errors="*{address.postalNumber}"></p><br>
+    <br>
+
+    <label for="city">City</label>
+    <input type="text" id="city" th:field="*{address.city}"/>
+    <p th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></p><br>
+    <br>
+
+    <label for="street">Street</label>
+    <input type="text" id="street" th:field="*{address.street}"/>
+    <p th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}"></p><br>
+    <br>
+
+    <label for="orientationalNumber">Orientational Number</label>
+    <input type="text" id="orientationalNumber" th:field="*{address.orientationalNumber}"/>
+    <p th:if="${#fields.hasErrors('address.orientationalNumber')}" th:errors="*{address.orientationalNumber}"></p><br>
+    <br>
+
+    <label for="garageInsurance">Garage Insurance</label>
+    <input type="checkbox" id="garageInsurance" th:field="*{garageInsurance}"/>
+    <p th:if="${#fields.hasErrors('garageInsurance')}" th:errors="*{garageInsurance}"></p><br>
+    <br>
+
+    <label for="type">Type</label>
+    <select name="type" id="type">
+        <option th:each="type: ${types}"
+                th:value="${type}"
+                th:selected="${type.equals(contract.getType())}"
+                th:text="${type.getName()}"></option>
+    </select>
+    <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p><br>
+    <br>
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

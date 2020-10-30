@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC - Form</title>
+</head>
+<body>
+<form action ='#' th:action="@{/contract/healthInsuranceAdd/}" th:object="${resource}"  method="post" >
+    <label for="issued">Issued</label>
+    <input type="date" id="issued" th:field="*{issued}"/>
+    <p th:if="${#fields.hasErrors('issued')}" th:errors="*{issued}"></p><br>
+    <br>
+
+    <label for="start">Start</label>
+    <input type="date" id="start" th:field="*{start}"/>
+    <p th:if="${#fields.hasErrors('start')}" th:errors="*{start}"></p><br>
+    <br>
+
+    <label for="end">End</label>
+    <input type="date" id="end" th:field="*{end}"/>
+    <p th:if="${#fields.hasErrors('end')}" th:errors="*{end}"></p><br>
+    <br>
+
+    <label for="amountInsured">Amount Insured</label>
+    <input type="number" id="amountInsured" th:field="*{amountInsured}"/>
+    <p th:if="${#fields.hasErrors('amountInsured')}" th:errors="*{amountInsured}"></p><br>
+    <br>
+
+    <label for="paymentPm">Payment per month</label>
+    <input type="number" id="paymentPm" th:field="*{paymentPm}"/>
+    <p th:if="${#fields.hasErrors('paymentPm')}" th:errors="*{paymentPm}"></p><br>
+    <br>
+
+    <label for="insurer">Insurer</label>
+    <select name="insurer" id="insurer">
+        <option th:each="user: ${users}"
+                th:value="${user.getId()}"
+                th:text="${user.getFullName()}"></option>
+    </select>
+
+    <label for="insured">Insured</label>
+    <select name="insured" id="insured">
+        <option th:each="user: ${users}"
+                th:value="${user.getId()}"
+                th:text="${user.getFullName()}"></option>
+    </select>
+    <br>
+
+
+    <label for="longTermInjury">Long-term injury compensation</label>
+    <input type="number" id="longTermInjury" th:field="*{longTermInjury}"/>
+    <p th:if="${#fields.hasErrors('longTermInjury')}" th:errors="*{longTermInjury}"></p><br>
+    <br>
+
+    <label for="deathDueInjury">Death due injury compensation</label>
+    <input type="number" id="deathDueInjury" th:field="*{deathDueInjury}"/>
+    <p th:if="${#fields.hasErrors('deathDueInjury')}" th:errors="*{deathDueInjury}"></p><br>
+    <br>
+
+    <label for="compensationPerDay">Compensation Per Day</label>
+    <input type="number" id="compensationPerDay" th:field="*{compensationPerDay}"/>
+    <p th:if="${#fields.hasErrors('compensationPerDay')}" th:errors="*{compensationPerDay}"></p><br>
+    <br>
+
+    <label for="validity">Validity</label>
+    <select name="validity" id="validity">
+        <option th:each="validity: ${validities}"
+                th:value="${validity}"
+                th:selected="${validity.equals(resource.getValidity())}"
+                th:text="${validity.getName()}"></option>
+    </select>
+    <p th:if="${#fields.hasErrors('validity')}" th:errors="*{validity}"></p><br>
+    <br>
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

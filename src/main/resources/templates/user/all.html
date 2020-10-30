@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC - list</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Id</th>
+        <th class="mdl-data-table__cell--non-numeric">Name</th>
+        <th class="mdl-data-table__cell--non-numeric">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users.values()}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.getFullName()}"></td>
+        <td th:text="${user.mail}"></td>
+        <td><a th:href="@{'/user/update/'+ ${user.id}}" ><span>Edit</span></a></td>
+        <td><a th:href="@{'/user/detail/'+ ${user.id}}"><span>Detail</span></a></td>
+
+    </tr>
+    </tbody>
+</table>
+<br>
+    <a href="/user/add/"><span>Add User</span></a><br>
+
+
+</body>
+</html>
